@@ -5,7 +5,7 @@ import { AuthContext } from '../contexts/UserContext';
 const Register = () => {
 
     const { createUser } = useContext(AuthContext);
-    console.log(createUser)
+    console.log(createUser);
 
     const handleSubmit = event => {
 
@@ -26,8 +26,6 @@ const Register = () => {
             .catch(error => {
                 console.error(error);
             })
-
-
     }
 
     return (

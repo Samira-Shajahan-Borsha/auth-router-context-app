@@ -6,7 +6,9 @@ const Login = () => {
     const { signIn } = useContext(AuthContext);
 
     const handleSubmit = event => {
+        
         event.preventDefault();
+
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
@@ -17,12 +19,13 @@ const Login = () => {
             .then(userCredential => {
                 const user = userCredential.user;
                 console.log(user);
+                form.reset();
             })
             .catch(error => {
                 console.error(error);
             })
     }
-    
+
     return (
         <div>
             <div className="hero min-h-screen bg-base-200">
