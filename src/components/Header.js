@@ -4,7 +4,13 @@ import { AuthContext } from '../contexts/UserContext';
 
 const Header = () => {
 
-    const { user } = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
+
+    const handleSignOut = () => {
+        logOut()
+            .then(() => { })
+            .catch(error => console.error(error))
+    }
 
     return (
         <div>
@@ -16,7 +22,11 @@ const Header = () => {
                 {
                     user?.email && <span>Welcome, {user.email}</span>
                 }
-                <button className="btn btn-sm">Sign Out</button>
+                {
+                    user?.email ? <button className="btn btn-sm" onClick={handleSignOut}>Sign Out</button> : <Link to='/login'>
+                        <button className="btn btn-sm">Login</button>
+                    </Link>
+                }
             </div>
         </div>
     );

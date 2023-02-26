@@ -4,8 +4,8 @@ import { AuthContext } from '../contexts/UserContext';
 
 const Register = () => {
 
-    const { createUser } = useContext(AuthContext);
-    console.log(createUser);
+    const { createUser, signInWithGoogle } = useContext(AuthContext);
+    // console.log(createUser);
 
     const handleSubmit = event => {
 
@@ -26,6 +26,15 @@ const Register = () => {
             .catch(error => {
                 console.error(error);
             })
+    }
+
+    const handleGoogleSignIn = () => {
+        signInWithGoogle()
+            .then(result => {
+                const user = result.user;
+                console.log('register',user);
+            })
+            .catch(error => console.error(error))
     }
 
     return (
@@ -62,6 +71,7 @@ const Register = () => {
                                 <button className="btn btn-primary">Register</button>
                             </div>
                         </form>
+                        <button onClick={handleGoogleSignIn} className="btn btn-outline btn-success">Google</button>
                     </div>
                 </div>
             </div>
